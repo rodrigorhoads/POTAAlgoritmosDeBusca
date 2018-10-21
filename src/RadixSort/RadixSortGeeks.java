@@ -26,7 +26,6 @@ public class RadixSortGeeks {
     {
         int mx = arr[0];
         for (int i = 1; i < n; i++) {
-            numeroCompracoes++;
             if (arr[i] > mx)
                 mx = arr[i];
         }
@@ -52,6 +51,7 @@ public class RadixSortGeeks {
 
         for (i = n - 1; i >= 0; i--)
         {
+            numeroCompracoes++;
             output[count[ (arr[i]/exp)%10 ] - 1] = arr[i];
             count[ (arr[i]/exp)%10 ]--;
         }

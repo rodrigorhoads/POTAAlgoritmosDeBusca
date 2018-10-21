@@ -26,38 +26,35 @@ import java.util.Date;
  *
  * */
 public class InsertionSort {
-//    public static void main(String[]Args){
-//        int[] vetor = new int[]{32,12,25,4,654,5,8745,3,18,2,4,5,8,21,54};
-//        Date data = new Date();
-//        double inicio = data.getTime();
-//
-//        JOptionPane.showMessageDialog(null, Arrays.toString(vetor)+" :"+data.getTime());
-//
-//        InsertionSort(vetor);
-//        data = new Date();
-//        double fim = data.getTime();
-//        JOptionPane.showMessageDialog(null, Arrays.toString(vetor)+""+data.getTime());
-//        double total = fim - inicio;
-//        JOptionPane.showMessageDialog(null, "Tempo total "+total);
-//    }
-private static int numeroComparacao=0;
-    public static int[] InsertionSort(int[] vetorDesordenado){
-        int temporario = 0;
+
+private static int numeroComparacao;
+
+    public InsertionSort(int[]array) {
+        numeroComparacao= 0;
+        InsertionSort(array);
+        System.out.println("InsertionSort numero de comparações "+numeroComparacao);
+        System.out.println("InsertionSort ordenado "+Arrays.toString(array));
+    }
+
+    public static void InsertionSort(int[] vetorDesordenado){
         int j=0;
+
         for (int i=1;i<=vetorDesordenado.length-1;i++){
-            numeroComparacao++;
-            j=i-1;
-            temporario = vetorDesordenado[i];
-            while(j>=0 && vetorDesordenado[j] > temporario){
-                numeroComparacao+=2;
-                vetorDesordenado[j+1] = vetorDesordenado[j];
+            j=i;
+            while(j > 0 && vetorDesordenado[j-1] > vetorDesordenado[j]){
+                numeroComparacao++;
+                Trocar(vetorDesordenado,j-1,j);
                 j--;
             }
-            numeroComparacao++;
-            vetorDesordenado[j+1]=temporario;
+
         }
-        numeroComparacao++;
-        System.out.println("InsertionSort : "+numeroComparacao);
-        return vetorDesordenado;
+
+    }
+
+    public static void Trocar(int []array,int i,int j){
+        int temp = 0;
+        temp=array[i];
+        array[i]=array[j];
+        array[j]=temp;
     }
 }

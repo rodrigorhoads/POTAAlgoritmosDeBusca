@@ -4,31 +4,21 @@ import java.util.Arrays;
 
 public class RadixSortGeeks {
 
-    public  static int numeroCompracoes=0;
+    public  static int numeroCompracoes;
 
-    public  int getNumeroCompracoes() {
-        return numeroCompracoes;
+    public RadixSortGeeks(int []array) {
+        numeroCompracoes=0;
+        radixsort(array,array.length);
+        System.out.println("RadixSort numero de conparações "+numeroCompracoes);
+        System.out.println("Radix Sort ordenado "+ Arrays.toString(array));
     }
-
-    public  void setNumeroCompracoes(int numero) {
-        RadixSortGeeks.numeroCompracoes = numero;
-    }
-
-
-
-
 
     public void radixsort(int arr[], int n)
     {
-
         int m = getMax(arr, n);
-
-
-        for (int exp = 1; m/exp > 0; exp *= 10){
-            numeroCompracoes++;
+        for (int exp = 1; m/exp> 0; exp*=10){
             countSort(arr, n, exp);
         }
-            numeroCompracoes++;
     }
 
 
@@ -40,7 +30,6 @@ public class RadixSortGeeks {
             if (arr[i] > mx)
                 mx = arr[i];
         }
-        numeroCompracoes++;
         return mx;
     }
 
@@ -52,34 +41,25 @@ public class RadixSortGeeks {
         int output[] = new int[n];
         int i;
         int count[] = new int[10];
-        Arrays.fill(count,0);
 
         for (i = 0; i < n; i++){
             count[ (arr[i]/exp)%10 ]++;
-            numeroCompracoes++;
         }
-        numeroCompracoes++;
 
         for (i = 1; i < 10; i++) {
             count[i] += count[i - 1];
-            numeroCompracoes++;
         }
-        numeroCompracoes++;
 
         for (i = n - 1; i >= 0; i--)
         {
-            numeroCompracoes++;
             output[count[ (arr[i]/exp)%10 ] - 1] = arr[i];
             count[ (arr[i]/exp)%10 ]--;
         }
-        numeroCompracoes++;
-
 
         for (i = 0; i < n; i++) {
             arr[i] = output[i];
-            numeroCompracoes++;
         }
-        numeroCompracoes++;
+
     }
 
     @Override

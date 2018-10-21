@@ -3,27 +3,30 @@ package APSTest;
 import BubbleSort.BubbleSort;
 import BucketSort.BucketSort;
 import CountSort.CoutSort;
-import HeapSort.HeapSort;
 import InsertionSort.InsertionSort;
-import MergeSort.MergeSort;
-import QuickSort.QuickSort;
+import QuickSort.QuickSortCormen;
 import RadixSort.RadixSortGeeks;
 import SelectionSort.SelectionSort;
 import MergeSort.MergerGeeks;
-import HeapSort.HeapSortGeeks;
+import HeapSort.HeapSortBruno;
+
 import java.util.Arrays;
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 
 public class APSTest {
 
     public static void main(String[] args){
 
-        int  [] A5=gerarNumeroAletorio(5);
+        int [] A5=gerarNumeroAletorio(5);
         int [] A10=gerarNumeroAletorio(10);
         int [] A50=gerarNumeroAletorio(50);
         int [] A100=gerarNumeroAletorio(100);
         int [] Amil=gerarNumeroAletorio(1000);
         int [] A10mil=gerarNumeroAletorio(10000);
+
+
+
         System.out.println(Arrays.toString(A5));
         System.out.println(Arrays.toString(A10));
         System.out.println(Arrays.toString(A50));
@@ -31,139 +34,112 @@ public class APSTest {
         System.out.println(Arrays.toString(Amil));
         System.out.println(Arrays.toString(A10mil));
 
-        BubbleSort.BubbleSort(A5.clone());
-        BubbleSort.BubbleSort(A10.clone());
-        BubbleSort.BubbleSort(A50.clone());
-        BubbleSort.BubbleSort(A100.clone());
-        BubbleSort.BubbleSort(Amil.clone());
-        BubbleSort.BubbleSort(A10mil.clone());
+//*****************  INICIO DO BUBBLESORT ******************************//
+
+        BubbleSort bubbleSort = new BubbleSort(A5.clone());
+        bubbleSort = new BubbleSort(A10.clone());
+        bubbleSort = new BubbleSort(A50.clone());
+        bubbleSort = new BubbleSort(A100.clone());
+        bubbleSort = new BubbleSort(Amil.clone());
+        bubbleSort = new BubbleSort(A10mil.clone());
+
+//*****************  FIM DO BUBBLESORT ******************************//
+
+//***************** INICIO DO INSERTIONSORT ******************************//
+
+        InsertionSort insertionSort = new InsertionSort(A5.clone());
+        insertionSort = new InsertionSort(A10.clone());
+        insertionSort = new InsertionSort(A50.clone());
+        insertionSort = new InsertionSort(A100.clone());
+        insertionSort = new InsertionSort(Amil.clone());
+        insertionSort = new InsertionSort(A10mil.clone());
+
+//*****************  FIM DO InsertionSort ******************************//
+
+
+//***************** INICIO DO SelectionSORT ******************************//
+
+        SelectionSort selectionSort = new SelectionSort(A5.clone());
+        selectionSort = new SelectionSort(A10.clone());
+        selectionSort = new SelectionSort(A50.clone());
+        selectionSort = new SelectionSort(A100.clone());
+        selectionSort = new SelectionSort(Amil.clone());
+        selectionSort = new SelectionSort(A10mil.clone());
+
+//*****************  FIM DO SelectionSort ******************************//
+
+
+//***************** INICIO DO MERGESORT ******************************//
+
+        MergerGeeks mergerGeeks = new MergerGeeks(A5.clone());
+
+        mergerGeeks = new MergerGeeks(A10.clone());
+        mergerGeeks = new MergerGeeks(A50.clone());
+        mergerGeeks = new MergerGeeks(A100.clone());
+        mergerGeeks = new MergerGeeks(Amil.clone());
+        mergerGeeks = new MergerGeeks(A10mil.clone());
 
 
 
-        InsertionSort.InsertionSort(A5.clone());
-        InsertionSort.InsertionSort(A10.clone());
-        InsertionSort.InsertionSort(A50.clone());
-        InsertionSort.InsertionSort(A100.clone());
-        InsertionSort.InsertionSort(Amil.clone());
-        InsertionSort.InsertionSort(A10mil.clone());
-
-        SelectionSort.SelectionSort(A5.clone());
-        SelectionSort.SelectionSort(A10.clone());
-        SelectionSort.SelectionSort(A50.clone());
-        SelectionSort.SelectionSort(A100.clone());
-        SelectionSort.SelectionSort(Amil.clone());
-        SelectionSort.SelectionSort(A10mil.clone());
-
-        MergerGeeks mergerGeeks = new MergerGeeks();
+//*****************  FIM DO MERGESORT ******************************//
 
 
-         mergerGeeks.sort(A5.clone(),0,A5.length-1);
-        System.out.println(mergerGeeks.toString());
-        mergerGeeks.setNumeroComparacao(0);
+//************* INICIO QUICK SORT   **********************************************//
+        QuickSortCormen quickSortCormen = new QuickSortCormen(A5.clone());
 
-        mergerGeeks.sort(A10.clone() ,0 ,A10.length-1).toString();
-        System.out.println(mergerGeeks.toString());
-        mergerGeeks.setNumeroComparacao(0);
+        quickSortCormen = new QuickSortCormen(A10.clone());
 
-        mergerGeeks.sort(A50.clone(),0,A50.length-1).toString();
-        System.out.println(mergerGeeks.toString());
-        mergerGeeks.setNumeroComparacao(0);
+        quickSortCormen = new QuickSortCormen(A50.clone());
 
-        mergerGeeks.sort(A100.clone(),0,A100.length-1).toString();
-        System.out.println(mergerGeeks.toString());
-        mergerGeeks.setNumeroComparacao(0);
+        quickSortCormen = new QuickSortCormen(A100.clone());
 
-        mergerGeeks.sort(Amil.clone(),0,Amil.length-1).toString();
-        System.out.println(mergerGeeks.toString());
-        mergerGeeks.setNumeroComparacao(0);
+        quickSortCormen = new QuickSortCormen(Amil.clone());
 
-        mergerGeeks.sort(A10mil.clone(),0,A10mil.length-1);
-        System.out.println(mergerGeeks.toString());
+        quickSortCormen = new QuickSortCormen(A10mil.clone());
+
+
+//************* FIM QUICK SORT   **********************************************//
+
+//************* HEAP SORT**********************************************//
+        HeapSortBruno heapSortBruno = new HeapSortBruno(A5.clone());
+
+        heapSortBruno = new HeapSortBruno(A10.clone());
+        heapSortBruno = new HeapSortBruno(A50.clone());
+        heapSortBruno = new HeapSortBruno(A100.clone());
+        heapSortBruno = new HeapSortBruno(Amil.clone());
+        heapSortBruno = new HeapSortBruno(A10mil.clone());
+
+//************* HEAP SORT**********************************************//
+
+
+        RadixSortGeeks radixSortGeeks = new RadixSortGeeks(A5.clone());
+        radixSortGeeks = new RadixSortGeeks(A10.clone());
+        radixSortGeeks = new RadixSortGeeks(A50.clone());
+        radixSortGeeks = new RadixSortGeeks(A100.clone());
+        radixSortGeeks = new RadixSortGeeks(Amil.clone());
+        radixSortGeeks = new RadixSortGeeks(A10mil.clone());
 
 
 
-        QuickSort quickSort = new QuickSort();
-        quickSort.quickSort(A5.clone(),0,A5.length-1);
-        System.out.println(quickSort.toString());
-        quickSort.setNumeroComparacoes(0);
-
-        quickSort.quickSort(A10.clone() ,0 ,A10.length-1);
-        System.out.println(quickSort.toString());
-        quickSort.setNumeroComparacoes(0);
-
-        quickSort.quickSort(A50.clone(),0,A50.length-1);
-        System.out.println(quickSort.toString());
-        quickSort.setNumeroComparacoes(0);
-
-        quickSort.quickSort(A100.clone(),0,A100.length-1);
-        System.out.println(quickSort.toString());
-        quickSort.setNumeroComparacoes(0);
-
-        quickSort.quickSort(Amil.clone(),0,Amil.length-1);
-        System.out.println(quickSort.toString());
-        quickSort.setNumeroComparacoes(0);
-
-        quickSort.quickSort(A10mil.clone(),0,A10mil.length-1);
-        System.out.println(quickSort.toString());
+        BucketSort bucketSort = new BucketSort(A5.clone());
+        bucketSort = new BucketSort(A10.clone());
+        bucketSort = new BucketSort(A50.clone());
+        bucketSort = new BucketSort(A100.clone());
+        bucketSort = new BucketSort(Amil.clone());
+        bucketSort = new BucketSort(A10mil.clone());
 
 
 
-        HeapSortGeeks.sort(A5.clone());
-        HeapSortGeeks.sort(A10.clone());
-        HeapSortGeeks.sort(A50.clone());
-        HeapSortGeeks.sort(A100.clone());
-        HeapSortGeeks.sort(Amil.clone());
-        HeapSortGeeks.sort(A10mil.clone());
+//************* INICIO DO COUNT SORT **********************************************//
 
+        CoutSort countSort = new CoutSort(A5.clone());
+        countSort = new CoutSort(A10.clone());
+        countSort = new CoutSort(A50.clone());
+        countSort = new CoutSort(A100.clone());
+        countSort = new CoutSort(Amil.clone());
+        countSort = new CoutSort(A10mil.clone());
 
-
-            RadixSortGeeks radixSortGeeks = new RadixSortGeeks();
-                radixSortGeeks.radixsort(A5.clone(),A5.length);
-        System.out.println(radixSortGeeks.toString());
-        radixSortGeeks.setNumeroCompracoes(0);
-
-        radixSortGeeks.radixsort(A10.clone(),A10.length);
-        System.out.println(radixSortGeeks.toString());
-        radixSortGeeks.setNumeroCompracoes(0);
-
-        radixSortGeeks.radixsort(A50.clone(),A50.length);
-        System.out.println(radixSortGeeks.toString());
-        radixSortGeeks.setNumeroCompracoes(0);
-
-        radixSortGeeks.radixsort(A100.clone(),A100.length);
-        System.out.println(radixSortGeeks.toString());
-        radixSortGeeks.setNumeroCompracoes(0);
-
-        radixSortGeeks.radixsort(Amil.clone(),Amil.length);
-        System.out.println(radixSortGeeks.toString());
-        radixSortGeeks.setNumeroCompracoes(0);
-
-        radixSortGeeks.radixsort(A10mil.clone(),A10mil.length);
-        System.out.println(radixSortGeeks.toString());
-        radixSortGeeks.setNumeroCompracoes(0);
-
-        HeapSortGeeks.sort(A5.clone());
-        HeapSortGeeks.sort(A10.clone());
-        HeapSortGeeks.sort(A50.clone());
-        HeapSortGeeks.sort(A100.clone());
-        HeapSortGeeks.sort(Amil.clone());
-        HeapSortGeeks.sort(A10mil.clone());
-
-        BucketSort.sort(A5.clone(),A5.length);
-        BucketSort.sort(A10.clone(),A10.length);
-        BucketSort.sort(A50.clone(),A50.length);
-        BucketSort.sort(A100.clone(),A100.length);
-        BucketSort.sort(Amil.clone(),Amil.length);
-        BucketSort.sort(A10mil.clone(),A10mil.length);
-
-
-        CoutSort.sort(A5.clone());
-        CoutSort.sort(A10.clone());
-        CoutSort.sort(A50.clone());
-        CoutSort.sort(A100.clone());
-        CoutSort.sort(Amil.clone());
-        CoutSort.sort(A10mil.clone());
-
+//************* FIM DO COUNT SORT **********************************************//
 
         System.out.println(Arrays.toString(A5));
         System.out.println(Arrays.toString(A10));

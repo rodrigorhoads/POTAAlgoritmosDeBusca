@@ -28,97 +28,36 @@ import java.util.Random;
 //ANÁLISE DE COMPLEXIDADE
 public class BubbleSort {
 
-    private static int numeroComparacoes = 0;
-//    public static void main (String[]Args){
-//        int tamanho=0;
-//        while(tamanho<=0){
-//
-//            try{
-//                tamanho = Integer.parseInt(JOptionPane.showInputDialog(null,"Favor informar o tamanho do array a ser usado"));
-//            }catch (NumberFormatException nex){
-//                JOptionPane.showMessageDialog(null,"O numero deve sem inteiro sem casas decimais e numerico");
-//            }
-//        }
-//
-//
-//        int[] vetor = gerarNumeroAletorio(tamanho);
-//
-//
-//
-//        long tempoIncial = System.nanoTime();
-//        System.out.println(Arrays.toString(vetor)+" :"+tempoIncial);
-//        BubbleSort(vetor);
-//        long tempofinal = System.nanoTime();
-//        System.out.println(Arrays.toString(vetor)+""+tempofinal);
-//        long tempoTotal = (tempofinal-tempoIncial)/100;
-//        JOptionPane.showMessageDialog(null, "Tempo total :"+tempoTotal);
-//    }
+    private static int numeroComparacoes ;
 
-    public static int[] BubbleSort(int[] vetorDesordenado){
-        int temporario = 0;
+    public BubbleSort(int []array) {
+        numeroComparacoes = 0;
+        BubbleSort(array);
+        System.out.println("BubbleSort numero de comparações "+numeroComparacoes);
+        System.out.println("BubbleSort ordenado"+Arrays.toString(array));
+    }
 
-        for(int i=0;i<vetorDesordenado.length;i++){
-            for(int j=i;j<vetorDesordenado.length-1;j++)
+    public static void BubbleSort(int[] vetorDesordenado){
+
+        for(int i=0;i<vetorDesordenado.length-1;i++){
+            for(int j = i;j<vetorDesordenado.length;j++)
             {
                 numeroComparacoes++;
-                if(vetorDesordenado[i] > vetorDesordenado[j+1]){
-                    temporario = vetorDesordenado[i];
-                    vetorDesordenado[i]=vetorDesordenado[j+1];
-                    vetorDesordenado[j+1]=temporario;
-                }
-            }
-            numeroComparacoes++;
-        }
-        numeroComparacoes++;
-        System.out.println("BubbleSort : "+numeroComparacoes);
-        return vetorDesordenado;
-    }
-
-    /*
-    * tempo de execução é (n-1)+...+3+2+1
-    * O(n^2)
-    * */
-
-    public static int[] BubleSortV1(int[] vetor){
-        int temporario=0;
-        for(int i=0;i<vetor.length;i++){
-            for(int j=vetor.length-1;j>i;j--){
-                if(vetor[j]<vetor[i]){
-                    temporario=vetor[j];
-                    vetor[j]=vetor[i];
-                    vetor[i]=temporario;
+                if(vetorDesordenado[i] > vetorDesordenado[j]){
+                    if(i!=j)
+                    Troca(vetorDesordenado, i, j);
                 }
             }
         }
-        return vetor;
     }
 
-    /*
-    * no melhor caso gasta O(n)
-    * no pior caso gasta O(n^2)
-    * igual a todos os outros
-    *
-    * n(n-1)=n^2-n
-    * */
-
-    public static int[] BubleSortV2(int[] vetor){
-        int temporario = 0;
-        boolean troca=true;
-
-        while(troca){
-            troca = false;
-            for (int i=0;i<vetor.length-1;i++){
-                if(vetor[i]>vetor[i+1]){
-                    troca=true;
-                    temporario=vetor[i];
-                    vetor[i]=vetor[i+1];
-                    vetor[i+1]=temporario;
-                }
-            }
-        }
-
-        return vetor;
+    private static void Troca(int[] vetorDesordenado, int i, int j) {
+        int temporario = vetorDesordenado[i];
+        vetorDesordenado[i]=vetorDesordenado[j];
+        vetorDesordenado[j]=temporario;
     }
+
+
 
     public static int[] gerarNumeroAletorio(int tamanho)
     {

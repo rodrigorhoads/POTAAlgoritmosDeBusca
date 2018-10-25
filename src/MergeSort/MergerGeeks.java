@@ -2,6 +2,7 @@ package MergeSort;
 
 import BubbleSort.BubbleSort;
 import com.sun.tools.javac.Main;
+import jdk.dynalink.beans.StaticClass;
 
 import java.util.Arrays;
 
@@ -9,20 +10,22 @@ public class MergerGeeks {
 
 
 
-    public static int numeroComparacao= 0 ;
+    public static int numeroComparacao;
 
-    public  int[] sort(int[]array,int inicio,int fim){
-        numeroComparacao++;
+    public MergerGeeks(int[] array) {
+        numeroComparacao=0;
+        sort(array,0,array.length-1);
+        System.out.println("MergeSort numero de comparações "+numeroComparacao);
+        System.out.println("MergeSort ordenado "+Arrays.toString(array));
+    }
+
+    public static void sort(int[]array, int inicio, int fim){
         if(inicio<fim){
             int meio = (inicio+fim)/2;
-
             sort(array,inicio,meio);
             sort(array,meio+1,fim);
-
             intercalar(array,inicio,meio,fim);
         }
-
-        return array;
     }
 
     @Override
@@ -30,73 +33,72 @@ public class MergerGeeks {
         return "MergeSort "+numeroComparacao;
     }
 
-    public void intercalar(int[] array, int inicio, int meio, int fim) {
+    public static void intercalar(int[] array, int inicio, int meio, int fim) {
 
-        int n1 = meio - inicio + 1;
-        int n2 = fim- meio;
+        int qtdEleAEsquerda = meio - inicio + 1;
+        int qtdEleADireita = fim- meio;
 
-        int L[] = new int [n1];
-        int R[] = new int [n2];
+        int VetorEsquerdo[] = new int [qtdEleAEsquerda];
+        int VetorDireito[] = new int [qtdEleADireita];
 
-        for (int i=0; i<n1; ++i){
-            L[i] = array[inicio + i];
-            numeroComparacao++;
-        }
-        numeroComparacao++;
-        for (int j=0; j<n2; ++j){
-            R[j] = array[meio + 1+ j];
-            numeroComparacao++;
+        for (int i=0; i<qtdEleAEsquerda; ++i){
+            VetorEsquerdo[i] = array[inicio + i];
         }
 
-        numeroComparacao++;
-        int i = 0, j = 0;
+        for (int j=0; j<qtdEleADireita; ++j){
+            VetorDireito[j] = array[meio + 1+ j];
+        }
 
-        int k = inicio;
+        int i = 0;//indice inicial do subarray da esquerda
+        int j = 0;//indice inicial do subarray da direita
 
-        while (i < n1 && j < n2)
+        int k = inicio;//indice inicial do array "fundigo","misturado"
+
+        //enquanto os indices forem menores que a quantidade de elementos em cada
+        //lado dos subarrays ele realiza as comparações e devidas trocas
+        while (i < qtdEleAEsquerda && j < qtdEleADireita)
         {
             numeroComparacao++;
-            if (L[i] <= R[j])
+            //pega o menor elemento e coloca na posição 'certa' do vetor original
+            //vai organizando de partições menores para partiçoes maiores
+            //a medida que acontece o retorno da recursão
+            //e o vetor vai se ordenando conforme retorna
+            if (VetorEsquerdo[i] <= VetorDireito[j])
             {
-                array[k] = L[i];
+                array[k] = VetorEsquerdo[i];
                 i++;
             }
             else
             {
-                array[k] = R[j];
+
+                array[k] = VetorDireito[j];
                 j++;
             }
             k++;
         }
-        numeroComparacao++;
 
-
-        while (i < n1)
+        //caso o indice seja menor que a quantidade
+        //de elementos no subarray correspondente ele
+        //devolve os elementos ao array original
+        //se estiverem em posições corretas já estaram ordenados
+        while (i < qtdEleAEsquerda)
         {
-            numeroComparacao++;
-            array[k] = L[i];
+            array[k] = VetorEsquerdo[i];
             i++;
             k++;
         }
-        numeroComparacao++;
 
-
-        while (j < n2)
+        //caso o indice seja menor que a quantidade
+        //de elementos no subarray correspondente ele
+        //devolve os elementos ao array original
+        //se estiverem em posições corretas já estaram ordenados
+        while (j < qtdEleADireita)
         {
-            numeroComparacao++;
-            array[k] = R[j];
+            array[k] = VetorDireito[j];
             j++;
             k++;
         }
-        numeroComparacao++;
+
     }
 
-    public  int getNumeroComparacao() {
-        return numeroComparacao;
-    }
-
-    public void setNumeroComparacao(int numero)
-    {
-        numeroComparacao=numero;
-    }
 }

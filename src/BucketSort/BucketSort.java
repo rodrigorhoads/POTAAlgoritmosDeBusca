@@ -2,55 +2,91 @@ package BucketSort;
 
 import BubbleSort.BubbleSort;
 
+import java.lang.Integer;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BucketSort {
 
-//    public static void main(String args[]){
-//        int[]array = BubbleSort.gerarNumeroAletorio(50);
-//
-//        System.out.println(Arrays.toString(array));
-//
-//        sort(array,array.length);
-//
-//        System.out.println(Arrays.toString(array));
-//
-//
-//    }
+    private static int numeroComparacoes;
 
-    private static int numeroComparacoes=0;
+    public BucketSort(int []array){
+        numeroComparacoes=0;
+        BucketSortGit(array,encontrarMaior(array));
+        System.out.println("BucketSort numero de comparações "+numeroComparacoes);
+        System.out.println("BucketSort ordenado "+Arrays.toString(array));
+    }
 
-    public static void sort(int[] a, int maxVal) {
-        int [] bucket=new int[maxVal+1];
+    public static void BucketSortGit(int[]array,int maximo){
 
-        for (int i=0; i<bucket.length; i++) {
-            numeroComparacoes++;
-            bucket[i]=0;
+        Bucket[] buckets = new Bucket[array.length];
+
+//        inicializa os objetos do buckets
+
+        for(int indice=0;indice<buckets.length;indice++){
+            buckets[indice] = new Bucket();
         }
-        numeroComparacoes++;
 
-        for (int i=0; i<a.length; i++) {
-            numeroComparacoes++;
-            bucket[a[i]]++;
+        /*
+        * percorre o array original e cria o indice para inserir o numero
+        * */
+        int i=0;
+        for(int n : array){
+            int buckIndice = (array[i] * array.length) / (maximo+1);
+            buckets[buckIndice].bucket.add(n);
+            i++;
         }
-        numeroComparacoes++;
 
-        int outPos=0;
-        for (int i=0; i<bucket.length; i++) {
-            numeroComparacoes++;
-            for (int j=0; j<bucket[i]; j++) {
-                numeroComparacoes++;
-                a[outPos++]=i;
+        int indice = 0;
+
+        for(Bucket n: buckets){
+            insertionSort(n.bucket);
+            //coloca numero ordenado no novo array
+            for(int num : n.bucket){
+                array[indice] = num;
+                indice++;
             }
-            numeroComparacoes++;
         }
-        numeroComparacoes++;
 
-        System.out.println("BucketSort "+numeroComparacoes);
+    }
+
+    public static void insertionSort(ArrayList<Integer> array){
+        for(int indiceCountador = 0;indiceCountador<array.size()-1;indiceCountador++){
+            int j = indiceCountador;
+
+            while (j >=0 && array.get(j) > array.get(j+1)){
+                numeroComparacoes++;
+                Trocar(array,j,j+1);
+                j--;
+            }
+        }
+    }
+
+    private static void Trocar(ArrayList<Integer> array, int j, int i) {
+        int temporario = array.get(j);
+        array.set(j,array.get(i));
+        array.set(i,temporario);
     }
 
     @Override
     public String toString() {
         return "BucketSort " +numeroComparacoes;
     }
+
+
+    private static int encontrarMaior(int[] array) {
+        int maior= array[0];
+
+        for(int i=1;i<array.length;i++){
+            if(maior<array[i]){
+                maior=array[i];
+            }
+        }
+        return maior;
+    }
+}
+
+
+class Bucket{
+    ArrayList<Integer> bucket = new ArrayList<>();
 }

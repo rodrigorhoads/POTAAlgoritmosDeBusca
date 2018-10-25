@@ -1,59 +1,47 @@
 package CountSort;
 
+import java.util.Arrays;
+
 public class CoutSort {
 
-    private static int numeroComparacoes=0;
+    private static int numeroComparacoes;
+
+    public CoutSort(int[]array){
+        numeroComparacoes=0;
+        sort(array);
+        System.out.println("CountSort numero de comparações"+numeroComparacoes);
+        System.out.println("CountSort ordenado "+ Arrays.toString(array));
+    }
 
     public static void sort(int[] array) {
+        int maior = encontrarMaior(array);
 
-        // array to be sorted in, this array is necessary
-        // when we sort object datatypes, if we don't,
-        // we can sort directly into the input array
-        int[] aux = new int[array.length];
+        int[] count = new int[maior+1];
 
-        // find the smallest and the largest value
-        int min = array[0];
-        int max = array[0];
-        for (int i = 1; i < array.length; i++) {
-            numeroComparacoes+=2;
-            if (array[i] < min) {
-                min = array[i];
-            } else if (array[i] > max) {
-                max = array[i];
+        for(int i= 0;i<array.length;i++){
+            count[array[i]]+=1;
+        }
+
+        int indice = 0;
+
+        for(int i=0;i<count.length;i++){
+            while (count[i]>0){
+                numeroComparacoes++;
+                array[indice]=i;
+                indice++;
+                count[i]-=1;
             }
         }
+    }
 
-        numeroComparacoes++;
+    private static int encontrarMaior(int[] array) {
+        int maior= array[0];
 
-        // init array of frequencies
-        int[] counts = new int[max - min + 1];
-
-        // init the frequencies
-        for (int i = 0;  i < array.length; i++) {
-            numeroComparacoes++;
-            counts[array[i] - min]++;
+        for(int i=1;i<array.length;i++){
+            if(maior<array[i]){
+                maior=array[i];
+            }
         }
-
-        // recalculate the array - create the array of occurences
-        counts[0]--;
-        for (int i = 1; i < counts.length; i++) {
-            numeroComparacoes++;
-            counts[i] = counts[i] + counts[i-1];
-        }
-
-    /*
-      Sort the array right to the left
-      1) Look up in the array of occurences the last occurence of the given value
-      2) Place it into the sorted array
-      3) Decrement the index of the last occurence of the given value
-      4) Continue with the previous value of the input array (goto set1),
-         terminate if all values were already sorted
-    */
-        for (int i = array.length - 1; i >= 0; i--) {
-            numeroComparacoes++;
-            aux[counts[array[i] - min]--] = array[i];
-        }
-
-        System.out.println("CountSort " +numeroComparacoes);
+        return maior;
     }
 }

@@ -38,15 +38,13 @@ public class SelectionSort {
         numeroComparacao = 0;
         Sort(array);
         System.out.println("SelectionSort numero de comparações" + numeroComparacao);
-        System.out.println("SelectionSort ordenado " + Arrays.toString(array));
+//        System.out.println("SelectionSort ordenado " + Arrays.toString(array));
     }
 
     public static void Sort(int[] array) {
         for (int ultimoIndiceDesordenado = array.length - 1;
              ultimoIndiceDesordenado > 0; ultimoIndiceDesordenado--) {
-
             int maior = 0;
-
             for (int i = 1; i <= ultimoIndiceDesordenado; i++) {
                 numeroComparacao++;
                 if (array[i] > array[maior]) {

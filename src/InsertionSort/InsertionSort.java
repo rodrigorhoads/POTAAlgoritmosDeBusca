@@ -33,7 +33,7 @@ private static int numeroComparacao;
         numeroComparacao= 0;
         InsertionSort(array);
         System.out.println("InsertionSort numero de comparações "+numeroComparacao);
-        System.out.println("InsertionSort ordenado "+Arrays.toString(array));
+//        System.out.println("InsertionSort ordenado "+Arrays.toString(array));
     }
 
     public static void InsertionSort(int[] vetorDesordenado){
@@ -57,4 +57,6 @@ private static int numeroComparacao;
         array[i]=array[j];
         array[j]=temp;
     }
+
+
 }

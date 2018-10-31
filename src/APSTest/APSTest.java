@@ -27,12 +27,12 @@ public class APSTest {
 
 
 
-        System.out.println(Arrays.toString(A5));
-        System.out.println(Arrays.toString(A10));
-        System.out.println(Arrays.toString(A50));
-        System.out.println(Arrays.toString(A100));
-        System.out.println(Arrays.toString(Amil));
-        System.out.println(Arrays.toString(A10mil));
+//        System.out.println(Arrays.toString(A5));
+//        System.out.println(Arrays.toString(A10));
+//        System.out.println(Arrays.toString(A50));
+//        System.out.println(Arrays.toString(A100));
+//        System.out.println(Arrays.toString(Amil));
+//        System.out.println(Arrays.toString(A10mil));
 
 //*****************  INICIO DO BUBBLESORT ******************************//
 
@@ -141,12 +141,12 @@ public class APSTest {
 
 //************* FIM DO COUNT SORT **********************************************//
 
-        System.out.println(Arrays.toString(A5));
-        System.out.println(Arrays.toString(A10));
-        System.out.println(Arrays.toString(A50));
-        System.out.println(Arrays.toString(A100));
-        System.out.println(Arrays.toString(Amil));
-        System.out.println(Arrays.toString(A10mil));
+//        System.out.println(Arrays.toString(A5));
+//        System.out.println(Arrays.toString(A10));
+//        System.out.println(Arrays.toString(A50));
+//        System.out.println(Arrays.toString(A100));
+//        System.out.println(Arrays.toString(Amil));
+//        System.out.println(Arrays.toString(A10mil));
     }
 
     public static int[] gerarNumeroAletorio(int tamanho)

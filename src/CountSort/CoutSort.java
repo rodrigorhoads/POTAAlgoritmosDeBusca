@@ -10,10 +10,11 @@ public class CoutSort {
         numeroComparacoes=0;
         sort(array);
         System.out.println("CountSort numero de comparações"+numeroComparacoes);
-        System.out.println("CountSort ordenado "+ Arrays.toString(array));
+//        System.out.println("CountSort ordenado "+ Arrays.toString(array));
     }
 
     public static void sort(int[] array) {
+
         int maior = encontrarMaior(array);
 
         int[] count = new int[maior+1];

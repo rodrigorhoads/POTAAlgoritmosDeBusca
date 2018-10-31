@@ -14,7 +14,7 @@ public class HeapSortBruno {
         numerocomparações=0;
         Sort(array,array.length);
         System.out.println("HeapSort numemro de comparações "+numerocomparações);
-        System.out.println("HeapSort "+Arrays.toString(array));
+//        System.out.println("HeapSort "+Arrays.toString(array));
     }
 
 
@@ -23,7 +23,6 @@ public class HeapSortBruno {
         CriarHeap(array,tamanho);
         int fim =tamanho-1;
         while (fim>0){
-            numerocomparações++;
             Trocar(array,0,fim);
             fim--;
             arrumarHeap(array,0,fim);

@@ -34,18 +34,18 @@ public class BubbleSort {
         numeroComparacoes = 0;
         BubbleSort(array);
         System.out.println("BubbleSort numero de comparações "+numeroComparacoes);
-        System.out.println("BubbleSort ordenado"+Arrays.toString(array));
+//        System.out.println("BubbleSort ordenado"+Arrays.toString(array));
     }
 
     public static void BubbleSort(int[] vetorDesordenado){
 
-        for(int i=0;i<vetorDesordenado.length-1;i++){
-            for(int j = i;j<vetorDesordenado.length;j++)
+        for(int i=0;i<vetorDesordenado.length;i++){
+            for(int j = 1;j<vetorDesordenado.length;j++)
             {
                 numeroComparacoes++;
-                if(vetorDesordenado[i] > vetorDesordenado[j]){
-                    if(i!=j)
-                    Troca(vetorDesordenado, i, j);
+                if(vetorDesordenado[j-1] > vetorDesordenado[j]){
+
+                    Troca(vetorDesordenado, j-1, j);
                 }
             }
         }

@@ -16,7 +16,7 @@ public class MergerGeeks {
         numeroComparacao=0;
         sort(array,0,array.length-1);
         System.out.println("MergeSort numero de comparações "+numeroComparacao);
-        System.out.println("MergeSort ordenado "+Arrays.toString(array));
+//        System.out.println("MergeSort ordenado "+Arrays.toString(array));
     }
 
     public static void sort(int[]array, int inicio, int fim){
@@ -28,10 +28,6 @@ public class MergerGeeks {
         }
     }
 
-    @Override
-    public String toString() {
-        return "MergeSort "+numeroComparacao;
-    }
 
     public static void intercalar(int[] array, int inicio, int meio, int fim) {
 

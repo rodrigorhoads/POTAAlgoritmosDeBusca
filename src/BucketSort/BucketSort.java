@@ -14,12 +14,12 @@ public class BucketSort {
         numeroComparacoes=0;
         BucketSortGit(array,encontrarMaior(array));
         System.out.println("BucketSort numero de comparações "+numeroComparacoes);
-        System.out.println("BucketSort ordenado "+Arrays.toString(array));
+//        System.out.println("BucketSort ordenado "+Arrays.toString(array));
     }
 
     public static void BucketSortGit(int[]array,int maximo){
 
-        Bucket[] buckets = new Bucket[array.length];
+        Bucket[] buckets = new Bucket[10];
 
 //        inicializa os objetos do buckets
 
@@ -30,11 +30,10 @@ public class BucketSort {
         /*
         * percorre o array original e cria o indice para inserir o numero
         * */
-        int i=0;
+
         for(int n : array){
-            int buckIndice = (array[i] * array.length) / (maximo+1);
+            int buckIndice = (n * 10) / (maximo+1);
             buckets[buckIndice].bucket.add(n);
-            i++;
         }
 
         int indice = 0;

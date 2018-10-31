@@ -13,7 +13,7 @@ public class QuickSortCormen {
         numeroDeComparacoes = 0;
         Sort(array,0,array.length-1);
         System.out.println("QuickSortC numero comparações "+numeroDeComparacoes);
-        System.out.println("QuickSortC ordenado "+Arrays.toString(array));
+//        System.out.println("QuickSortC ordenado "+Arrays.toString(array));
     }
 
     public static void Sort(int[]array, int inicio, int fim) {

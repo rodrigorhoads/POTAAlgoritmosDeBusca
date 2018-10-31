@@ -10,7 +10,7 @@ public class RadixSortGeeks {
         numeroCompracoes=0;
         radixsort(array,array.length);
         System.out.println("RadixSort numero de conparações "+numeroCompracoes);
-        System.out.println("Radix Sort ordenado "+ Arrays.toString(array));
+//        System.out.println("Radix Sort ordenado "+ Arrays.toString(array));
     }
 
     public void radixsort(int arr[], int n)
